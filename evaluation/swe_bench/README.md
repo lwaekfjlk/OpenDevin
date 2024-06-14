@@ -1,8 +1,10 @@
 # SWE-Bench Evaluation with OpenDevin SWE-Bench Docker Image
 
+Attention: When continuing running the experiments after breaking down at some point, we need to delete data that has empty generation git patch. Otherwise, it would bring us some stucking error like EOF pip install -e .[test] not working error. --> https://github.com/OpenDevin/OpenDevin/issues/2427
+
 ## Step0: Do not use Conda environment
 
-Running OpenDevin in the conda would cause long time connection when communicating with the sandbox.
+Running OpenDevin in the conda would cause long time connection when communicating with the sandbox. Otherwise, it would cause source swe_entry longer than 10 minutes error --> https://github.com/OpenDevin/OpenDevin/issues/2273
 
 ## Step1: Run make build first.
 ```bash
