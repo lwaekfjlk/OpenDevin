@@ -6,6 +6,8 @@ Tips: pxssh errors like `EOF pip install -e .[test] not working error` or `rror:
 
 Tips: If you came across `ERROR: Operation cancelled by user`, restarting the docker works for this situation. It can be caused by running multiple experiments together at the same time or some related docker issues.
 
+Tips: If you came across `Could not establish connection to host`, there can be some docker errors and just restart the docker and run again.
+
 
 ## Step0: Do not use Conda environment
 
