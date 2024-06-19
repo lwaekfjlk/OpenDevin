@@ -146,6 +146,29 @@ class LLM:
                 # with thousands of unwanted tokens
                 self.max_output_tokens = 1024
 
+        if 'gemini' in self.model_name:
+            safety_settings = [
+                {
+                    'category': 'HARM_CATEGORY_HARASSMENT',
+                    'threshold': 'BLOCK_NONE',
+                },
+                {
+                    'category': 'HARM_CATEGORY_HATE_SPEECH',
+                    'threshold': 'BLOCK_NONE',
+                },
+                {
+                    'category': 'HARM_CATEGORY_SEXUALLY_EXPLICIT',
+                    'threshold': 'BLOCK_NONE',
+                },
+                {
+                    'category': 'HARM_CATEGORY_DANGEROUS_CONTENT',
+                    'threshold': 'BLOCK_NONE',
+                },
+            ]
+            extra_kwargs = {
+                'safety_settings': safety_settings,
+            }
+
         self._completion = partial(
             litellm_completion,
             model=self.model_name,
@@ -157,6 +180,7 @@ class LLM:
             timeout=self.llm_timeout,
             temperature=llm_temperature,
             top_p=llm_top_p,
+            **extra_kwargs,
         )
 
         completion_unwrapped = self._completion
