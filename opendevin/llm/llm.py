@@ -24,7 +24,7 @@ from opendevin.core.logger import opendevin_logger as logger
 
 __all__ = ['LLM']
 
-litellm.set_verbose = False
+litellm.set_verbose = True
 
 
 class LLM:
@@ -169,19 +169,33 @@ class LLM:
                 'safety_settings': safety_settings,
             }
 
-        self._completion = partial(
-            litellm_completion,
-            model=self.model_name,
-            api_key=self.api_key,
-            base_url=self.base_url,
-            api_version=self.api_version,
-            custom_llm_provider=custom_llm_provider,
-            max_tokens=self.max_output_tokens,
-            timeout=self.llm_timeout,
-            temperature=llm_temperature,
-            top_p=llm_top_p,
-            **extra_kwargs,
-        )
+        if 'gemini' in self.model_name:
+            self._completion = partial(
+                litellm_completion,
+                model=self.model_name,
+                api_key=self.api_key,
+                base_url=self.base_url,
+                api_version=self.api_version,
+                custom_llm_provider=custom_llm_provider,
+                max_tokens=self.max_output_tokens,
+                timeout=self.llm_timeout,
+                temperature=llm_temperature,
+                top_p=llm_top_p,
+                **extra_kwargs,
+            )
+        else:
+            self._completion = partial(
+                litellm_completion,
+                model=self.model_name,
+                api_key=self.api_key,
+                base_url=self.base_url,
+                api_version=self.api_version,
+                custom_llm_provider=custom_llm_provider,
+                max_tokens=self.max_output_tokens,
+                timeout=self.llm_timeout,
+                temperature=llm_temperature,
+                top_p=llm_top_p,
+            )
 
         completion_unwrapped = self._completion
 
