@@ -1,6 +1,6 @@
 import jsonlines
 
-exp_names = ['claude-3-sonnet-20240229_maxiter_50_N_v1.3', 'gpt-4o_maxiter_50_N_v1.3']
+exp_names = ['claude-2_maxiter_50_N_v1.3', 'gemini-1.5-flash_maxiter_50_N_v1.3']
 
 for exp_name in exp_names:
     with jsonlines.open(
@@ -12,9 +12,12 @@ for exp_name in exp_names:
     generated = 0
     applied = 0
     resolved = 0
+
     for data in dataset:
-        resolved += 1 if data['test_result']['result']['resolved'] > 0 else 0
-        generated += 1 if len(data['git_patch']) > 0 else 0
+        if 'test_result' in data and 'result' in data['test_result']:
+            resolved += 1 if data['test_result']['result']['resolved'] > 0 else 0
+        if 'git_patch' in data:
+            generated += 1 if len(data['git_patch']) > 0 else 0
 
     print(exp_name)
     print(f'Generated: {generated}')
