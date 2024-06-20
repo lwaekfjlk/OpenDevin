@@ -18,7 +18,8 @@ In [OpenDevin-SWE-Bench fork](https://github.com/OpenDevin/OD-SWE-bench.git) (mo
 **We pack everything you need for SWE-Bench evaluation into one, gigantic, docker image.** To use it:
 
 ```bash
-docker pull ghcr.io/opendevin/eval-swe-bench:full-v1.0
+docker pull ghcr.io/opendevin/eval-swe-bench:full-v1.0 # originally used for 1.3 but has some bugs
+docker pull ghcr.io/opendevin/eval-swe-bench:full-v1.2.1 # both infer and eval_test should use the latest version for avoid some bugs
 ```
 
 The Docker image contains several important directories:

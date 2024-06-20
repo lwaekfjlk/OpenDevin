@@ -360,6 +360,11 @@ if __name__ == '__main__':
     # filter out finished instances
     new_swe_bench_tests = []
     for idx, instance in swe_bench_tests.iterrows():
+        if 'scikit' in instance.instance_id:
+            logger.info(
+                f'Skipping instance {instance.instance_id} as it is a scikit-learn task.'
+            )
+            continue
         if instance.instance_id in finished_instance_ids:
             logger.info(
                 f'Skipping instance {instance.instance_id} as it is already finished.'
