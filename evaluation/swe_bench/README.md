@@ -8,6 +8,8 @@ Tips: If you came across `ERROR: Operation cancelled by user`, restarting the do
 
 Tips: If you came across `Could not establish connection to host`, there can be some docker errors and just restart the docker and run again.
 
+Tips: If you came across `sqlite3 unsupported version error`, https://github.com/OpenDevin/OpenDevin/issues/571
+
 
 ## Step0: Do not use Conda environment
 
