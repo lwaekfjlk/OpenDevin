@@ -455,30 +455,31 @@ crt = ["awscrt (==0.20.11)"]
 
 [[package]]
 name = "browsergym"
-version = "0.1.0rc7"
+version = "0.3.4"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym-0.1.0rc7-py3-none-any.whl", hash = "sha256:333f207988b79affa16d2a900f9432adf1103d9bc25b511b4bbe0375ec5aa242"},
-    {file = "browsergym-0.1.0rc7.tar.gz", hash = "sha256:b65aab766194033e544f4f8bb6dcd712c9fca5061536dd7316d27a6b0b03e24f"},
+    {file = "browsergym-0.3.4-py3-none-any.whl", hash = "sha256:ecc06a42a6b7541f9025fa9cdc208d48eb4a745283358524715447257fc80adc"},
+    {file = "browsergym-0.3.4.tar.gz", hash = "sha256:853937f29c3855577a5fbc038a4371e82e50e393f4bdfc458df222590470807c"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.1.0rc7"
-browsergym-miniwob = "0.1.0rc7"
-browsergym-webarena = "0.1.0rc7"
-browsergym-workarena = "0.1.0rc7"
+browsergym-core = "0.3.4"
+browsergym-experiments = "0.3.4"
+browsergym-miniwob = "0.3.4"
+browsergym-webarena = "0.3.4"
+browsergym-workarena = "*"
 
 [[package]]
 name = "browsergym-core"
-version = "0.1.0rc7"
+version = "0.3.4"
 description = "BrowserGym: a gym environment for web task automation in the Chromium browser"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_core-0.1.0rc7-py3-none-any.whl", hash = "sha256:0ca03d9d26393cac4bd49650887c5268ac6eab24576d4e1c41dd8bd13b32a3a5"},
-    {file = "browsergym_core-0.1.0rc7.tar.gz", hash = "sha256:e0a5dfdba777d235ac3ed9ed61b580dffc7edc1b8b8f360111e24ebb43edd879"},
+    {file = "browsergym_core-0.3.4-py3-none-any.whl", hash = "sha256:1d7164b9afab613af6ae269fb811721738b09d5935df567cceba87dd1ecb4f23"},
+    {file = "browsergym_core-0.3.4.tar.gz", hash = "sha256:357d4cc61f2447983f9c5c0c262d5d6cca129e926ab576ec72f6b974bd1f7fd6"},
 ]
 
 [package.dependencies]
@@ -491,51 +492,68 @@ playwright = ">=1.32,<1.40"
 pyparsing = ">=3"
 
 [[package]]
+name = "browsergym-experiments"
+version = "0.3.4"
+description = "Experimentation tools for BrowserGym"
+optional = false
+python-versions = ">3.7"
+files = [
+    {file = "browsergym_experiments-0.3.4-py3-none-any.whl", hash = "sha256:d2e4a75b4a2e79f9300eb289c9b2432f07dee82622d384924972f4157069f3fe"},
+    {file = "browsergym_experiments-0.3.4.tar.gz", hash = "sha256:16309c6b2be59627ea90c7e36448eb897512bcef033cf481472879f4c5be317b"},
+]
+
+[package.dependencies]
+browsergym-core = "0.3.4"
+tiktoken = ">=0.4"
+
+[[package]]
 name = "browsergym-miniwob"
-version = "0.1.0rc7"
+version = "0.3.4"
 description = "MiniWoB++ benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_miniwob-0.1.0rc7-py3-none-any.whl", hash = "sha256:fe44d45e51ac0fddf5b68541170ba206c0b415a175058d092d32312edb8fa042"},
-    {file = "browsergym_miniwob-0.1.0rc7.tar.gz", hash = "sha256:b4de8b7d91bf768348727332cf3e6be82f7ca1a2a5d14a146aa3724bbad941b0"},
+    {file = "browsergym_miniwob-0.3.4-py3-none-any.whl", hash = "sha256:4de41ee146d6f0bcb2e49b0fb8fd49f519439bf44808aef6146f5ae00064062b"},
+    {file = "browsergym_miniwob-0.3.4.tar.gz", hash = "sha256:938d58a9882c4118e46160d303a9a6d93ac1a08288e81e2c6d5c768719f012fe"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.1.0rc7"
+browsergym-core = "0.3.4"
 
 [[package]]
 name = "browsergym-webarena"
-version = "0.1.0rc7"
+version = "0.3.4"
 description = "WebArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_webarena-0.1.0rc7-py3-none-any.whl", hash = "sha256:83b3fc12166be3c7401ecd0e61c4ffe049b88b73449a0e05ffebb8593b4b663e"},
-    {file = "browsergym_webarena-0.1.0rc7.tar.gz", hash = "sha256:4f5136878776427ccb41a6d0131c292077681bae40e45e2f890cbf00a90d6679"},
+    {file = "browsergym_webarena-0.3.4-py3-none-any.whl", hash = "sha256:fd9f9bb4cdf1e32d22e6cd525fd0c28adf9dda615e4dc614b677c25f675a9b73"},
+    {file = "browsergym_webarena-0.3.4.tar.gz", hash = "sha256:ba921a76223910d8842d0c9dd6d3393db14819f9a74c477289f0d2625bdd8feb"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.1.0rc7"
-libwebarena = "0.0.2"
+browsergym-core = "0.3.4"
+libwebarena = "0.0.3"
 
 [[package]]
 name = "browsergym-workarena"
-version = "0.1.0rc7"
+version = "0.3.1"
 description = "WorkArena benchmark for BrowserGym"
 optional = false
 python-versions = ">3.7"
 files = [
-    {file = "browsergym_workarena-0.1.0rc7-py3-none-any.whl", hash = "sha256:b5b7985455b0459b8cbd7038ed07e9cefff6fc70e344487c666714aa01bad630"},
-    {file = "browsergym_workarena-0.1.0rc7.tar.gz", hash = "sha256:c1960066a87ada4c6226533eb15bcf5c40308b6dc39ad45acbaa6332c836aa7f"},
+    {file = "browsergym_workarena-0.3.1-py3-none-any.whl", hash = "sha256:5ba113d38401ac6c4a5548a77ef91655a50cb48384d434f1a4eb691219b69957"},
+    {file = "browsergym_workarena-0.3.1.tar.gz", hash = "sha256:f0685e371cff206c3a54758bfc81ae7ea1473f6ae21f685e48cf01761235e61e"},
 ]
 
 [package.dependencies]
-browsergym-core = "0.1.0rc7"
+browsergym-core = ">=0.2"
 english-words = ">=2.0.1"
+faker = ">=24.8.0"
 numpy = ">=1.14"
 requests = ">=2.31"
 tenacity = ">=8.2.3"
+tqdm = ">=4.66.2"
 
 [[package]]
 name = "build"
@@ -1330,6 +1348,20 @@ tensorflow = ["tensorflow (>=2.2.0,!=2.6.0,!=2.6.1)"]
 tensorflow-gpu = ["tensorflow-gpu (>=2.2.0,!=2.6.0,!=2.6.1)"]
 tests = ["Werkzeug (>=1.0.1)", "absl-py", "accelerate", "bert-score (>=0.3.6)", "cer (>=1.2.0)", "charcut (>=1.1.1)", "jiwer", "mauve-text", "nltk", "pytest", "pytest-datadir", "pytest-xdist", "requests-file (>=1.5.1)", "rouge-score (>=0.1.2)", "sacrebleu", "sacremoses", "scikit-learn", "scipy (>=1.10.0)", "sentencepiece", "seqeval", "six (>=1.15.0,<1.16.0)", "tensorflow (>=2.3,!=2.6.0,!=2.6.1,<=2.10)", "texttable (>=1.6.3)", "tldextract (>=3.1.0)", "toml (>=0.10.1)", "torch", "transformers", "trectools", "unidecode (>=1.3.4)"]
 torch = ["torch"]
+
+[[package]]
+name = "faker"
+version = "25.9.1"
+description = "Faker is a Python package that generates fake data for you."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Faker-25.9.1-py3-none-any.whl", hash = "sha256:f1dc27dc8035cb7e97e96afbb5fe1305eed6aeea53374702cbac96acfe851626"},
+    {file = "Faker-25.9.1.tar.gz", hash = "sha256:0e1cf7a8d3c94de91a65ab1e9cf7050903efae1e97901f8e5924a9f45147ae44"},
+]
+
+[package.dependencies]
+python-dateutil = ">=2.4"
 
 [[package]]
 name = "farama-notifications"
@@ -2640,13 +2672,13 @@ adal = ["adal (>=1.0.2)"]
 
 [[package]]
 name = "libwebarena"
-version = "0.0.2"
+version = "0.0.3"
 description = "This is an unofficial, use-at-your-own risks port of the webarena benchmark, for use as a standalone library package."
 optional = false
 python-versions = "<4,>=3.7"
 files = [
-    {file = "libwebarena-0.0.2-py3-none-any.whl", hash = "sha256:c3daee09c492e58ec1d67b65c2fcc47dceda7a8a5536accaee3a692d189ee0c4"},
-    {file = "libwebarena-0.0.2.tar.gz", hash = "sha256:124623e96333cf96df21b5e9522d0fcb69a96a53ed5ccb1056a1d51f48482bc1"},
+    {file = "libwebarena-0.0.3-py3-none-any.whl", hash = "sha256:aa0a0879486e5c90b2b2ec1c3bf309b0c7f13ee2bf7c8945447ac15f7027d248"},
+    {file = "libwebarena-0.0.3.tar.gz", hash = "sha256:3d05fae6749931aaf26e6c80fd665725dfeab41ac4848f168c407dbe3de89baf"},
 ]
 
 [package.dependencies]
@@ -2666,13 +2698,13 @@ types-tqdm = "*"
 
 [[package]]
 name = "litellm"
-version = "1.40.17"
+version = "1.40.19"
 description = "Library to easily interface with LLM API providers"
 optional = false
 python-versions = "!=2.7.*,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,>=3.8"
 files = [
-    {file = "litellm-1.40.17-py3-none-any.whl", hash = "sha256:3501bab851a2bc7634a0c1675f3d4b5057d92d87f53cb67b2f59537b6f8e3b19"},
-    {file = "litellm-1.40.17.tar.gz", hash = "sha256:87aac43c3366059eff135ace60d1f1cea4eba3348da370cb0ae6db1215cbd970"},
+    {file = "litellm-1.40.19-py3-none-any.whl", hash = "sha256:4ef171e778ca198ef8c0920dec6e8f3267fe0f193484f78f811e060949868326"},
+    {file = "litellm-1.40.19.tar.gz", hash = "sha256:18d0da4d4e8e1e1e3ba06d7e07d5899de7c05b6b9db8f96d30bfceb115af2bb7"},
 ]
 
 [package.dependencies]
@@ -4074,13 +4106,13 @@ sympy = "*"
 
 [[package]]
 name = "openai"
-version = "1.35.2"
+version = "1.35.3"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.7.1"
 files = [
-    {file = "openai-1.35.2-py3-none-any.whl", hash = "sha256:205fc3800a3a65ec1fc755d76b16080c7b6d50ab38caf88a9e52337df13744e0"},
-    {file = "openai-1.35.2.tar.gz", hash = "sha256:60fb1a36c547ab3bab571187df3449319ad3d9587c7044724e7ba86c2d461224"},
+    {file = "openai-1.35.3-py3-none-any.whl", hash = "sha256:7b26544cef80f125431c073ffab3811d2421fbb9e30d3bd5c2436aba00b042d5"},
+    {file = "openai-1.35.3.tar.gz", hash = "sha256:d6177087f150b381d49499be782d764213fdf638d391b29ca692b84dd675a389"},
 ]
 
 [package.dependencies]
@@ -7429,4 +7461,4 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "69b19717cc1d55eec15208edad3362f092390aab48422868c7fb7d58ab89ecef"
+content-hash = "2c71b4ec00589b7d0f720c12766aa5da7f456e30d9744c51ec60054196c31b67"
