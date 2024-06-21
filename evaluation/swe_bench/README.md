@@ -2,7 +2,7 @@
 
 Tips: When continuing running the experiments after breaking down at some point, we need to delete data that has empty generation git patch (or delete a few recent datapoints work for me). Otherwise, it would bring us some stucking error like EOF pip install -e .[test] not working error. --> https://github.com/OpenDevin/OpenDevin/issues/2427
 
-Tips: pxssh errors like `EOF pip install -e .[test] not working error` or `rror: Failed to retrieve repository path. Tests may not have passed or output was not as expected.\r\n` is related to specific instances in the SWE-bench lite for opendevin. Don't know how to fix them. Should be good to ignore. Typical errors would be triggered when runnning typical instances.
+Tips: pxssh errors like `EOF pip install -e .[test] not working error` or `rror: Failed to retrieve repository path. Tests may not have passed or output was not as expected.\r\n` is related to specific instances in the SWE-bench lite for opendevin. Don't know how to fix them. Should be good to ignore. Typical errors would be triggered when runnning typical instances. (this is due to running AMD64 docker on a M1)
 
 Tips: If you came across `ERROR: Operation cancelled by user`, restarting the docker works for this situation. It can be caused by running multiple experiments together at the same time or some related docker issues.
 
