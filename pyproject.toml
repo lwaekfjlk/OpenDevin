@@ -9,7 +9,7 @@ repository = "https://github.com/OpenDevin/OpenDevin"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pysqlite3-binary = "*"
+pysqlite3-binary = "*" # necessary for linux, not needed for macos
 datasets = "*"
 pandas = "*"
 litellm = "*"
