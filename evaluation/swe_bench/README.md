@@ -10,7 +10,7 @@ Tips: If you came across `Could not establish connection to host`, there can be 
 
 Tips: If you came across `sqlite3 unsupported version error`, https://github.com/OpenDevin/OpenDevin/issues/571.
 
-Tops: If running on M1/M2 chips, need to follow https://stackoverflow.com/questions/70765522/docker-amd64-warning-on-apple-m1-computer about the docker using Rosetta. (Click on using Rosetta to support AMD64 on M1)
+Tops: If running on M1/M2 chips, need to follow https://stackoverflow.com/questions/70765522/docker-amd64-warning-on-apple-m1-computer about the docker using Rosetta. (Click on using Rosetta to support AMD64 on M1). It would help you avoid errors like `'rror: Failed to retrieve repository path. Tests may not have passed or output was not as expected.\r\n'`
 
 
 ## Step0: Do not use Conda environment
