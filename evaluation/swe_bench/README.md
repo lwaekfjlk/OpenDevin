@@ -8,7 +8,9 @@ Tips: If you came across `ERROR: Operation cancelled by user`, restarting the do
 
 Tips: If you came across `Could not establish connection to host`, there can be some docker errors and just restart the docker and run again.
 
-Tips: If you came across `sqlite3 unsupported version error`, https://github.com/OpenDevin/OpenDevin/issues/571
+Tips: If you came across `sqlite3 unsupported version error`, https://github.com/OpenDevin/OpenDevin/issues/571.
+
+Tops: If running on M1/M2 chips, need to follow https://stackoverflow.com/questions/70765522/docker-amd64-warning-on-apple-m1-computer about the docker using Rosetta.
 
 
 ## Step0: Do not use Conda environment
