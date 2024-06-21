@@ -1,14 +1,17 @@
 import jsonlines
+from pprint import pprint
 
 exp_names = [
-    'claude-2_maxiter_50_N_v1.3',
-    'gemini-1.5-flash_maxiter_50_N_v1.3',
-    'gpt-4o_maxiter_50_N_v1.3',
+    #'claude-2_maxiter_50_N_v1.3',
+    'gemini-1.5-pro-latest_maxiter_50_N_v1.3',
+    #'gpt-4o_maxiter_50_N_v1.3',
     'gpt-4-turbo_maxiter_50_N_v1.3',
-    'gpt-3.5-turbo_maxiter_50_N_v1.3',
-    'Mixtral-8x22B-Instruct-v0.1_maxiter_50_N_v1.3',
+    #'gpt-3.5-turbo_maxiter_50_N_v1.3',
+    #'Mixtral-8x22B-Instruct-v0.1_maxiter_50_N_v1.3',
     'Qwen2-72B-Instruct_maxiter_50_N_v1.3',
 ]
+
+MAX_ITER = 50
 
 for exp_name in exp_names:
     with jsonlines.open(
@@ -23,7 +26,10 @@ for exp_name in exp_names:
 
     jsonline_data = []
     for data in dataset:
-        if 'resolved' in data['test_result']['result'].keys():
+        if 'resolved' not in data['test_result']['result'].keys():
+            continue
+
+        if data['history'][-1][0]['message'] == 'All done! What\'s next on the agenda?' or len(data['history']) >= (MAX_ITER + 1):
             jsonline_data.append(data)
         else:
             continue
