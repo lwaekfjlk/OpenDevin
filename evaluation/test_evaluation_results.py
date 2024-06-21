@@ -4,6 +4,7 @@ from pprint import pprint
 exp_names = [
     'gpt-4-turbo_maxiter_50_N_v1.3',
     'Qwen2-72B-Instruct_maxiter_50_N_v1.3',
+    'gemini-1.5-pro-latest_maxiter_50_N_v1.3',
 ]
 
 MAX_ITER = 50
