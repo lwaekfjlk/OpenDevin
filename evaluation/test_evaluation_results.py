@@ -1,6 +1,8 @@
 import jsonlines
 
-exp_names = ['claude-2_maxiter_50_N_v1.3', 'gemini-1.5-flash_maxiter_50_N_v1.3']
+exp_names = [
+    'claude-2_maxiter_50_N_v1.3', 
+    'gpt-4-turbo_maxiter_50_N_v1.3']
 
 for exp_name in exp_names:
     with jsonlines.open(
@@ -13,11 +15,24 @@ for exp_name in exp_names:
     applied = 0
     resolved = 0
 
+    valid_dataset = []
     for data in dataset:
-        if 'test_result' in data and 'result' in data['test_result']:
+        if 'resolved' in data['test_result']['result'].keys():
+            valid_dataset.append(data)
+        else:
+            continue
+
+        if 'test_result' in data.keys() and 'result' in data['test_result']:
             resolved += 1 if data['test_result']['result']['resolved'] > 0 else 0
-        if 'git_patch' in data:
+        if 'git_patch' in data.keys():
             generated += 1 if len(data['git_patch']) > 0 else 0
+
+    with jsonlines.open(
+        f'evaluation_outputs/outputs/swe_bench/CodeActAgent/{exp_name}/valid_output.jsonl',
+        'w',
+    ) as f:
+        for data in valid_dataset:
+            f.write(data)
 
     print(exp_name)
     print(f'Generated: {generated}')
