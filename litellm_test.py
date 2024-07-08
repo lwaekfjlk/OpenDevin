@@ -8,7 +8,7 @@ response = litellm.completion(
         {'role': 'system', 'content': 'You are a helpful assistant.'},
         {'role': 'user', 'content': 'Who won the world series in 2020?'},
     ],
-    base_url='http://cccxc710.pok.ibm.com:8081/v1',
+    base_url='http://cccxc716.pok.ibm.com:8084/v1',
     api_key='fake',
 )
 print(response)
