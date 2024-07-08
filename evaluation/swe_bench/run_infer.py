@@ -6,6 +6,7 @@ import os
 import pathlib
 import subprocess
 import time
+import random
 from concurrent.futures import ProcessPoolExecutor
 
 import pandas as pd
@@ -287,7 +288,9 @@ def process_instance(
 if __name__ == '__main__':
     # Load the dataset
     dataset = load_dataset('princeton-nlp/SWE-bench_Lite')
-    swe_bench_tests = dataset['dev'].to_pandas()
+    # random select 25 instances for testing
+    random_dataset = dataset['test'].shuffle(seed=42).select(range(25))
+    swe_bench_tests = random_dataset.to_pandas()
 
     if args.llm_config:
         specified_llm_config = get_llm_config_arg(args.llm_config)
@@ -374,7 +377,6 @@ if __name__ == '__main__':
 
     for test in new_swe_bench_tests:
         logger.info(f'Instance {test.instance_id} is ready for evaluation.')
-    import pdb; pdb.set_trace()
 
     swe_bench_tests = pd.DataFrame(new_swe_bench_tests)
     logger.info(
