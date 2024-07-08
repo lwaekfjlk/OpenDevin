@@ -288,9 +288,54 @@ def process_instance(
 if __name__ == '__main__':
     # Load the dataset
     dataset = load_dataset('princeton-nlp/SWE-bench_Lite')
+
+    codestral_resolved_ids = [
+        "matplotlib__matplotlib-24334",
+        "matplotlib__matplotlib-23964",
+        "pytest-dev__pytest-5227",
+        "psf__requests-863",
+        "django__django-16527",
+        "mwaskom__seaborn-3010",
+        "sympy__sympy-13480",
+        "django__django-15789",
+        "pytest-dev__pytest-7168",
+        "django__django-10914",
+        "django__django-14580",
+        "django__django-14382",
+        "django__django-11099",
+        "pytest-dev__pytest-5413"
+    ]
+
+    gpt4o_resolved_ids = [
+        "django__django-14915",
+        "matplotlib__matplotlib-23964",
+        "psf__requests-863",
+        "pytest-dev__pytest-5227",
+        "mwaskom__seaborn-3010",
+        "sympy__sympy-23117",
+        "sphinx-doc__sphinx-8713",
+        "sympy__sympy-13647",
+        "django__django-13964",
+        "pytest-dev__pytest-7168",
+        "sympy__sympy-20590",
+        "pytest-dev__pytest-11143",
+        "sympy__sympy-24213",
+        "matplotlib__matplotlib-24149",
+        "scikit-learn__scikit-learn-13142",
+    ]
+
     # random select 25 instances for testing
-    random_dataset = dataset['test'].shuffle(seed=42).select(range(25))
-    swe_bench_tests = random_dataset.to_pandas()
+    dev_instance_ids = []
+    for data in dataset['test']:
+        if data['instance_id'] in codestral_resolved_ids:
+            dev_instance_ids.append(data['instance_id'])
+
+    # shuffle the dataset
+    for data in dataset['test']:
+        if data['instance_id'] in gpt4o_resolved_ids and data['instance_id'] not in codestral_resolved_ids and len(dev_instance_ids) <= 25:
+            dev_instance_ids.append(data['instance_id'])
+    
+    swe_bench_tests = dataset['test'].to_pandas()
 
     if args.llm_config:
         specified_llm_config = get_llm_config_arg(args.llm_config)
@@ -373,7 +418,9 @@ if __name__ == '__main__':
                 f'Skipping instance {instance.instance_id} as it is already finished.'
             )
             continue
-        new_swe_bench_tests.append(instance)
+
+        if instance.instance_id in dev_instance_ids:
+            new_swe_bench_tests.append(instance)
 
     for test in new_swe_bench_tests:
         logger.info(f'Instance {test.instance_id} is ready for evaluation.')
