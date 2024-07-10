@@ -74,7 +74,8 @@ class SWEAgent(Agent):
         prompt = STEP_PROMPT(goal, self.cur_file, self.cur_line)
 
         msgs = [
-            {'content': SYSTEM_MESSAGE, 'role': 'system'},
+            # TODO(haofeiyu): change it into user temporarily
+            {'content': SYSTEM_MESSAGE, 'role': 'user'},
             {'content': prompt, 'role': 'user'},
         ]
 

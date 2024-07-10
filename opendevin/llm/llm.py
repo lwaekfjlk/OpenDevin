@@ -146,6 +146,7 @@ class LLM:
                 # with thousands of unwanted tokens
                 self.max_output_tokens = 1024
 
+        """
         if 'gemini' in self.model_name:
             safety_settings = [
                 {
@@ -196,6 +197,19 @@ class LLM:
                 temperature=llm_temperature,
                 top_p=llm_top_p,
             )
+        """
+        self._completion = partial(
+            litellm_completion,
+            model=self.model_name,
+            api_key=self.api_key,
+            base_url=self.base_url,
+            api_version=self.api_version,
+            custom_llm_provider=custom_llm_provider,
+            max_tokens=self.max_output_tokens,
+            timeout=self.llm_timeout,
+            temperature=llm_temperature,
+            top_p=llm_top_p,
+        )
 
         completion_unwrapped = self._completion
 

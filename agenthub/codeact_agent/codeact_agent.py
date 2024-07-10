@@ -154,7 +154,8 @@ class CodeActAgent(Agent):
         """
         super().reset()
         self.messages: list[dict[str, str]] = [
-            {'role': 'system', 'content': self.system_message},
+            # TODO (haofeiyu): change it into user temporarily
+            {'role': 'user', 'content': self.system_message},
             {
                 'role': 'user',
                 'content': f"Here is an example of how you can interact with the environment for task solving:\n{EXAMPLES}\n\nNOW, LET'S START!",
