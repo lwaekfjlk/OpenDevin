@@ -1,5 +1,5 @@
 [core]
-max_iterations = 100
+max_iterations = 50
 cache_dir = "/tmp/cache"
 sandbox_container_image = "ghcr.io/opendevin/opendevin:buildcache-1831-merge"
 sandbox_type = "ssh"
