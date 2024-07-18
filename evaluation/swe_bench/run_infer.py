@@ -6,7 +6,6 @@ import os
 import pathlib
 import subprocess
 import time
-import random
 from concurrent.futures import ProcessPoolExecutor
 
 import pandas as pd
@@ -289,52 +288,34 @@ if __name__ == '__main__':
     # Load the dataset
     dataset = load_dataset('princeton-nlp/SWE-bench_Lite')
 
-    codestral_resolved_ids = [
-        "matplotlib__matplotlib-24334",
-        "matplotlib__matplotlib-23964",
-        "pytest-dev__pytest-5227",
-        "psf__requests-863",
-        "django__django-16527",
-        "mwaskom__seaborn-3010",
-        "sympy__sympy-13480",
-        "django__django-15789",
-        "pytest-dev__pytest-7168",
-        "django__django-10914",
-        "django__django-14580",
-        "django__django-14382",
-        "django__django-11099",
-        "pytest-dev__pytest-5413"
-    ]
-
-    gpt4o_resolved_ids = [
-        "django__django-14915",
-        "matplotlib__matplotlib-23964",
-        "psf__requests-863",
-        "pytest-dev__pytest-5227",
-        "mwaskom__seaborn-3010",
-        "sympy__sympy-23117",
-        "sphinx-doc__sphinx-8713",
-        "sympy__sympy-13647",
-        "django__django-13964",
-        "pytest-dev__pytest-7168",
-        "sympy__sympy-20590",
-        "pytest-dev__pytest-11143",
-        "sympy__sympy-24213",
-        "matplotlib__matplotlib-24149",
-        "scikit-learn__scikit-learn-13142",
+    # we select the first 45 in the gpt4o_resolved_but_codestral_unresolved_set
+    # and all the instances in the gpt4o_resolved_and_codestral_resolved_set
+    # for training, therefore, we need to exclude them from the evaluation set
+    gpt4o_resolved_but_codestral_unresolved_set_subpart = [
+        'django__django-13658',
+        'django__django-11133',
+        'django__django-15061',
+        'psf__requests-2317',
+        'django__django-13033',
+        'sympy__sympy-23117',
+        'sympy__sympy-21612',
+        'django__django-11848',
+        'django__django-11039',
+        'scikit-learn__scikit-learn-13779',
+        'django__django-12125',
+        'scikit-learn__scikit-learn-13142',
+        'django__django-16595',
+        'django__django-13448',
+        'sympy__sympy-21614',
+        'django__django-11049',
+        'django__django-15781',
+        'pytest-dev__pytest-7432',
+        'django__django-14855',
     ]
 
     # random select 25 instances for testing
-    dev_instance_ids = []
-    for data in dataset['test']:
-        if data['instance_id'] in codestral_resolved_ids:
-            dev_instance_ids.append(data['instance_id'])
+    dev_instance_ids = gpt4o_resolved_but_codestral_unresolved_set_subpart
 
-    # shuffle the dataset
-    for data in dataset['test']:
-        if data['instance_id'] in gpt4o_resolved_ids and data['instance_id'] not in codestral_resolved_ids and len(dev_instance_ids) <= 25:
-            dev_instance_ids.append(data['instance_id'])
-    
     swe_bench_tests = dataset['test'].to_pandas()
 
     if args.llm_config:
