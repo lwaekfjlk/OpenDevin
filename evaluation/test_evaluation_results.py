@@ -48,15 +48,21 @@ exp_names = [
     #'Qwen2-72B-Instruct_maxiter_50_N_v1.3',
     #'gemini-1.5-pro_maxiter_50_N_v1.3',
     #'gemini-1.5-pro-latest_maxiter_50_N_v1.3',
-    'claude-3-opus-20240229_maxiter_50_N_v1.3',
+    #'claude-3-opus-20240229_maxiter_50_N_v1.3',
     #'claude-3-5-sonnet-20240620_maxiter_50_N_v1.3',
+    #'Codestral-22B-v0.1_maxiter_50_N_v1.3',
+    #'Codestral-22B-v0.1_maxiter_50_N_v1.3_original',
+    'Codestral-22B-v0.1-commit-pack-interactive-lora_maxiter_50_N_v1.3',
+    'commit-pack-lora_maxiter_50_N_v1.3',
 ]
 
 MAX_ITER = 50
 
 
 def process_experiment_files(exp_names, file_suffix, max_iter):
+    resolved_instance_ids = []
     for exp_name in exp_names:
+        exp_resolved_instance_ids = []
         with jsonlines.open(
             f'evaluation_outputs/outputs/swe_bench/CodeActAgent/{exp_name}/{file_suffix}',
             'r',
@@ -74,7 +80,7 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
         jsonline_data = []
         oracle_data = []
 
-        for data in dataset:
+        for i, data in enumerate(dataset):
             oracle_datapoint = data.copy()
             oracle_datapoint['git_patch'] = oracle_datapoint['swe_instance']['patch']
             oracle_data.append(oracle_datapoint)
@@ -91,7 +97,7 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
             #    jsonline_data.append(data)
 
             formatted_history = reformat_history(data['history'])
-            print(len(formatted_history))
+            print('No.', i, ' ', len(formatted_history))
 
             if len(data['git_patch']) > 0:
                 jsonline_data.append(data)
@@ -99,6 +105,9 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
 
             if 'test_result' in data and 'result' in data['test_result']:
                 resolved += 1 if data['test_result']['result']['resolved'] > 0 else 0
+                if data['test_result']['result']['resolved']:
+                    print(data['instance_id'])
+                    exp_resolved_instance_ids.append(data['instance_id'])
             if 'git_patch' in data:
                 generated += 1 if len(data['git_patch']) > 0 else 0
 
@@ -115,6 +124,10 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
         print(f'Resolved: {resolved}')
         print(f'Valid: {valid}')
         print(f'Done: {total}')
+
+        resolved_instance_ids.append(exp_resolved_instance_ids)
+    print(resolved_instance_ids)
+    print(len(set(resolved_instance_ids[0] + resolved_instance_ids[1])))
 
 
 # Process merged files
