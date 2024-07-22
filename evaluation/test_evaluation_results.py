@@ -54,34 +54,30 @@ exp_names = [
     #'gemini-1.5-pro-latest_maxiter_50_N_v1.3',
     #'claude-3-opus-20240229_maxiter_50_N_v1.3',
     #'claude-3-5-sonnet-20240620_maxiter_50_N_v1.3',
-    'Codestral-22B-v0.1_maxiter_50_N_v1.3'
+    'Codestral-22B-v0.1_maxiter_50_N_v1.3',
+    'gpt4o-opendevin-traj-lora_maxiter_50_N_v1.3',
 ]
 
 dev_instance_ids = [
-    'django__django-10914',
-    'django__django-11099',
-    'django__django-14382',
-    'django__django-14580',
-    'django__django-15789',
-    'django__django-16527',
-    'matplotlib__matplotlib-23964',
-    'matplotlib__matplotlib-24334',
-    'mwaskom__seaborn-3010',
-    'psf__requests-863',
-    'pytest-dev__pytest-5227',
-    'pytest-dev__pytest-5413',
-    'pytest-dev__pytest-7168',
-    'sympy__sympy-13480',
-    'django__django-13964',
-    'django__django-14915',
-    'matplotlib__matplotlib-24149',
-    'pytest-dev__pytest-11143',
-    'scikit-learn__scikit-learn-13142',
-    'sphinx-doc__sphinx-8713',
-    'sympy__sympy-13647',
-    'sympy__sympy-20590',
+    'django__django-13658',
+    'django__django-11133',
+    'django__django-15061',
+    'psf__requests-2317',
+    'django__django-13033',
     'sympy__sympy-23117',
-    'sympy__sympy-24213',
+    'sympy__sympy-21612',
+    'django__django-11848',
+    'django__django-11039',
+    'scikit-learn__scikit-learn-13779',
+    'django__django-12125',
+    'scikit-learn__scikit-learn-13142',
+    'django__django-16595',
+    'django__django-13448',
+    'sympy__sympy-21614',
+    'django__django-11049',
+    'django__django-15781',
+    'pytest-dev__pytest-7432',
+    'django__django-14855',
 ]
 
 MAX_ITER = 50
@@ -107,8 +103,8 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
         oracle_data = []
 
         for data in dataset:
-            if data['instance_id'] not in dev_instance_ids:
-                continue
+            # if data['instance_id'] not in dev_instance_ids:
+            #    continue
             oracle_datapoint = data.copy()
             oracle_datapoint['git_patch'] = oracle_datapoint['swe_instance']['patch']
             oracle_data.append(oracle_datapoint)

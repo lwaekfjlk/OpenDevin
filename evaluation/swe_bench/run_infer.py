@@ -402,6 +402,7 @@ if __name__ == '__main__':
 
         if instance.instance_id in dev_instance_ids:
             new_swe_bench_tests.append(instance)
+        new_swe_bench_tests.append(instance)
 
     for test in new_swe_bench_tests:
         logger.info(f'Instance {test.instance_id} is ready for evaluation.')
