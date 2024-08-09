@@ -24,7 +24,7 @@ from opendevin.core.logger import opendevin_logger as logger
 
 __all__ = ['LLM']
 
-litellm.set_verbose = False
+litellm.set_verbose = True
 
 
 class LLM:
@@ -146,7 +146,7 @@ class LLM:
                 # with thousands of unwanted tokens
                 self.max_output_tokens = 1024
 
-        '''
+        """
         if 'gemini' in self.model_name:
             safety_settings = [
                 {
@@ -197,7 +197,7 @@ class LLM:
                 temperature=llm_temperature,
                 top_p=llm_top_p,
             )
-        '''
+        """
 
         self._completion = partial(
             litellm_completion,

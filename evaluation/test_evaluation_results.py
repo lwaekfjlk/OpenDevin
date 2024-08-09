@@ -54,8 +54,11 @@ exp_names = [
     #'gemini-1.5-pro-latest_maxiter_50_N_v1.3',
     #'claude-3-opus-20240229_maxiter_50_N_v1.3',
     #'claude-3-5-sonnet-20240620_maxiter_50_N_v1.3',
-    'Codestral-22B-v0.1_maxiter_50_N_v1.3',
-    'gpt4o-opendevin-traj-lora_maxiter_50_N_v1.3',
+    #'Codestral-22B-v0.1_maxiter_50_N_v1.3',
+    #'gpt4o-opendevin-traj-lora_maxiter_50_N_v1.3',
+    'granite-8b-code-instruct-128k_maxiter_50_N_v1.3',
+    'Codestral-22B-v0.1_codeact_and_opencodeinterpreter_maxiter_50_N_v1.3',
+    'granite_8b_instruct_codeact_and_opencodeinterpreter_maxiter_50_N_v1.3',
 ]
 
 dev_instance_ids = [
@@ -123,7 +126,7 @@ def process_experiment_files(exp_names, file_suffix, max_iter):
             formatted_history = reformat_history(data['history'])
             print(len(formatted_history))
 
-            if len(data['git_patch']) > 0:
+            if len(formatted_history) > 0:
                 jsonline_data.append(data)
                 valid += 1
 

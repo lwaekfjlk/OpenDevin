@@ -291,7 +291,7 @@ if __name__ == '__main__':
     # we select the first 45 in the gpt4o_resolved_but_codestral_unresolved_set
     # and all the instances in the gpt4o_resolved_and_codestral_resolved_set
     # for training, therefore, we need to exclude them from the evaluation set
-    gpt4o_resolved_but_codestral_unresolved_set_subpart = [
+    dev_instance_ids = [
         'django__django-13658',
         'django__django-11133',
         'django__django-15061',
@@ -313,8 +313,65 @@ if __name__ == '__main__':
         'django__django-14855',
     ]
 
-    # random select 25 instances for testing
-    dev_instance_ids = gpt4o_resolved_but_codestral_unresolved_set_subpart
+    train_instance_ids = [
+        'django__django-13158',
+        'sympy__sympy-24152',
+        'pytest-dev__pytest-7432',
+        'django__django-15320',
+        'django__django-15851',
+        'django__django-15781',
+        'sympy__sympy-21612',
+        'sympy__sympy-20590',
+        'django__django-15388',
+        'django__django-11848',
+        'scikit-learn__scikit-learn-13142',
+        'django__django-15061',
+        'scikit-learn__scikit-learn-14894',
+        'sympy__sympy-18189',
+        'django__django-11133',
+        'django__django-14855',
+        'django__django-16379',
+        'django__django-14997',
+        'sympy__sympy-24066',
+        'sphinx-doc__sphinx-8713',
+        'django__django-12286',
+        'pytest-dev__pytest-5692',
+        'django__django-16255',
+        'scikit-learn__scikit-learn-25570',
+        'scikit-learn__scikit-learn-13779',
+        'django__django-14999',
+        'django__django-11815',
+        'django__django-16139',
+        'django__django-11620',
+        'sympy__sympy-15609',
+        'sympy__sympy-14774',
+        'sympy__sympy-23117',
+        'django__django-17087',
+        'django__django-12497',
+        'django__django-13710',
+        'sympy__sympy-18532',
+        'django__django-13448',
+        'scikit-learn__scikit-learn-25500',
+        'matplotlib__matplotlib-24149',
+        'django__django-13590',
+        'django__django-13230',
+        'django__django-11797',
+        'django__django-12700',
+        'django__django-11049',
+        'django__django-14915',
+        'pytest-dev__pytest-5413',
+        'django__django-14580',
+        'django__django-16527',
+        'pytest-dev__pytest-7168',
+        'psf__requests-863',
+        'django__django-10914',
+        'mwaskom__seaborn-3010',
+        'sympy__sympy-13480',
+        'django__django-14382',
+        'matplotlib__matplotlib-23964',
+        'pytest-dev__pytest-5227',
+        'django__django-11099',
+    ]
 
     swe_bench_tests = dataset['test'].to_pandas()
 
@@ -400,8 +457,8 @@ if __name__ == '__main__':
             )
             continue
 
-        if instance.instance_id in dev_instance_ids:
-            new_swe_bench_tests.append(instance)
+        # if instance.instance_id in dev_instance_ids:
+        #    new_swe_bench_tests.append(instance)
         new_swe_bench_tests.append(instance)
 
     for test in new_swe_bench_tests:
